@@ -1,0 +1,26 @@
+
+body{
+    font-family: "Arial,";
+    background-color: yellow;
+}
+#main-title{
+    color: blue;
+}
+p{
+    color: red;
+}
+#about{
+    background-color: green;
+    color: white;
+    padding: 50px;
+    margin-bottom: 60px;
+}
+
+    background-color: aqua;
+}
+#btn{
+    text-decoration: :none;
+    padding: 60px;
+    background-color:black;
+    color:white;
+}

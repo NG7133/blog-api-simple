@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Api</title>
+</head>
+<body>
+    <h1>Mon Blog</h1>
+    <input id="titre" placeholder="Titre">
+    <input id="contenu" placeholder="Contenu">
+    <button onclick="ajouter()">Ajouter</button>
+
+    <h2>Articles</h2>
+    <ul id="liste"></ul>
+
+    <script>
+        function charger(){
+            fetch('/api/articles')
+             .then(res => res.json())
+             .then(data => {
+                const liste = document.getElementById('liste');
+                liste.innerHTML = "";
+                data.forEach(a => {
+                    liste.innerHTML += '<li>${a.titre} - ${a.contenu}</li>';
+                });
+            });
+                    
+        }
+        function ajouter() {
+            fetch('/api/articles', {
+                method: 'POST',
+                headers: {
+                    'Contenu-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    titre: document.getElementById('titre').value,
+                    contenu: document.getElementById('contenu').value
+                })
+                }).then(() => charger());
+            }
+
+            charger();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
